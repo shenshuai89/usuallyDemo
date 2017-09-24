@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>物体拖拽</title>
+	<style>
+		#move{
+			width: 100px;
+			height: 100px;
+			background-color: #e00;
+			position: absolute;
+		}
+	</style>
+	<script>
+	window.onload = function () {
+		var oMove = document.getElementById('move')
+		drag(oMove)
+
+		// 拖拽函数封装
+		function drag(obj){
+			obj.onmousedown = function(ev){
+				var ev = ev || event;
+				var disX = ev.clientX - this.offsetLeft
+				var disY = ev.clientY - this.offsetTop
+
+				//非标准IE
+				if (obj.setCapture) {
+					obj.setCapture()
+				}
+				document.onmousemove = function(ev){
+					var ev = ev || event;
+					var legalH = ev.clientX - disX
+					var legalV = ev.clientY - disY
+					if(legalH < 20){
+						legalH = 0
+					}else if(legalH > document.documentElement.clientWidth - obj.offsetWidth-20){
+						legalH = document.documentElement.clientWidth - obj.offsetWidth
+					}
+					if(legalV < 20){
+						legalV = 0
+					}else if(legalV > document.documentElement.clientHeight - obj.offsetHeight-20){
+						legalV = document.documentElement.clientHeight - obj.offsetHeight
+					}
+					obj.style.left = legalH +'px'
+					obj.style.top = legalV +'px'
+					
+				}
+
+				document.onmouseup = function(){
+					document.onmousemove= document.onmouseup =null
+					if (obj.releaseCapture) {
+						obj.releaseCapture()
+					}
+				}
+				return false
+			}
+		}
+
+		// 未进行封装的方法
+		/*oMove.onmousedown = function(ev){
+			var ev = ev || event;
+			var disX = ev.clientX - this.offsetLeft
+			var disY = ev.clientY - this.offsetTop
+
+			//非标准IE
+			if (oMove.setCapture) {
+				oMove.setCapture()
+			}
+			document.onmousemove = function(ev){
+				var ev = ev || event;
+				var legalH = ev.clientX - disX
+				var legalV = ev.clientY - disY
+				if(legalH < 0){
+					legalH = 0
+				}else if(legalH > document.documentElement.clientWidth - oMove.offsetWidth){
+					legalH = document.documentElement.clientWidth - oMove.offsetWidth
+				}
+				if(legalV < 0){
+					legalV = 0
+				}else if(legalV > document.documentElement.clientHeight - oMove.offsetHeight){
+					legalV = document.documentElement.clientHeight - oMove.offsetHeight
+				}
+				oMove.style.left = legalH +'px'
+				oMove.style.top = legalV +'px'
+				
+			}
+
+			document.onmouseup = function(){
+				document.onmousemove= document.onmouseup =null
+				if (oMove.releaseCapture) {
+					oMove.releaseCapture()
+				}
+			}
+			return false
+		}*/
+	}
+	</script>
+</head>
+<body>
+	<p>1226659636</p>
+	<div id="move"></div>
+</body>
+</html>

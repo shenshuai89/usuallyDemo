@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		*{
+			margin: 0px;
+			padding: 0px;
+		}
+		#wrapper{
+			width: 1000px;
+			position: relative;
+			margin:0 auto;
+		}
+		button{
+			width: 36px;
+			height: 36px;
+			border:none;
+			position: absolute;
+		}
+		button:hover{
+			cursor: pointer;
+		}
+		button:focus{
+			outline:0px;
+			-webkit-outline:0px;
+		}
+		#prev,#next{
+			width: 100px;
+			color: red;
+			background-color: #fff;
+			border:1px solid #666;
+			position: absolute;
+			top: 30px;
+		}
+		#next{
+			left: 120px;
+		}
+		#left1{
+			top: 320px;
+			background: url("img/arrows.png") no-repeat 0px 0px;
+		}
+		#left1:hover{
+			background: url("img/arrows.png") no-repeat -80px 0px;
+		}
+		#right1{
+			background: url("img/arrows.png") no-repeat -40px 0px;
+			left: 450px;
+			top: 320px;
+		}
+		#right1:hover{
+			background: url("img/arrows.png") no-repeat -120px 0px;
+		}
+		#left2{
+			top: 320px;
+			left: 500px;
+			background: url("img/arrows.png") no-repeat 0px 0px;
+		}
+		#left2:hover{
+			background: url("img/arrows.png") no-repeat -80px 0px;
+		}
+		#right2{
+			background: url("img/arrows.png") no-repeat -40px 0px;
+			right: 10px;
+			top: 320px;
+		}
+		#right2:hover{
+			background: url("img/arrows.png") no-repeat -120px 0px;
+		}
+		#image1{
+			width: 400px;
+			height: 390px;
+			position: absolute;
+			top: 180px;
+			left: 45px;
+		}
+		#image2{
+			width: 400px;
+			height: 640px;
+			position: absolute;
+			right: 55px;
+		}
+		#list1{
+			width: 210px;
+			list-style: none;
+			position: absolute;
+			top: 600px;
+			left: 150px;
+			font-size: 0;
+		}
+		#list1 li{
+			width: 30px;
+			height: 30px;
+			display: inline-block;
+			font-size: 16px;
+			border-radius: 15px;
+			margin-right: 10px;
+			background-color: #ccc;
+			text-align: center;
+			line-height: 30px;
+		}
+		#list1 li:hover{
+			cursor: pointer;
+		}
+		#list1 li.active{
+			background-color: #d00;
+			color: white;
+		}
+		#list1 li span{
+			position: relative;
+		}
+		#list2{
+			width: 210px;
+			list-style: none;
+			position: absolute;
+			top: 650px;
+			left: 685px;
+			font-size: 0;
+		}
+		#list2 li{
+			width: 30px;
+			height: 30px;
+			display: inline-block;
+			font-size: 16px;
+			border-radius: 15px;
+			margin-right: 10px;
+			background-color: #ccc;
+			text-align: center;
+			line-height: 30px;
+		}
+		#list2 li:hover{
+			cursor: pointer;
+		}
+		#list2 li.active{
+			background-color: #d00;
+			color: white;
+		}
+		#list2 li span{
+			position: relative;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			var oPrev = document.getElementById('prev');
+			var oNext = document.getElementById('next');
+			var leftBtn1 = document.getElementById('left1');
+			var leftBtn2 = document.getElementById('left2');
+			var rightBtn1 = document.getElementById('right1');
+			var rightBtn2 = document.getElementById('right2');
+			var image1 = document.getElementById('image1');
+			var image2 = document.getElementById('image2');
+			var oUl1 = document.getElementById('list1');
+			var oUl2 = document.getElementById('list2');
+			var oLis1 = oUl1.getElementsByTagName("li");
+			var oLis2 = oUl2.getElementsByTagName("li");
+			var oImg1 = oUl1.getElementsByTagName("img");
+			var oImg2 = oUl2.getElementsByTagName("img");
+			var arrImg1 = ["img/1.jpg","img/2.jpg","img/3.jpg","img/4.jpg","img/5.jpg"];
+			var arrImg2 = ["img/b1.jpg","img/b2.jpg","img/b3.jpg"];
+			var n = 0, m = 0;
+
+			oPrev.onclick = function(){
+				if (n == 0 ) {
+						n = arrImg1.length-1;
+					}else{
+						n--;
+					}
+					for (var i = 0; i < arrImg1.length; i++) {
+						oLis1[i].className = "";
+					}
+					oLis1[n].className = "active";
+					image1.src = arrImg1[n];
+				if (m == 0 ) {
+						m = arrImg2.length-1;
+					}else{
+						m--;
+					}
+					for (var i = 0; i < arrImg2.length; i++) {
+						oLis2[i].className = "";
+					}
+					oLis2[m].className = "active";
+					image2.src = arrImg2[m];
+			}
+			oNext.onclick = function(){
+				if (n == arrImg1.length-1 ) {
+						n = 0;
+					}else{
+						n++;
+					}
+					for (var i = 0; i < arrImg1.length; i++) {
+						oLis1[i].className = "";
+					}
+					oLis1[n].className = "active";
+					image1.src = arrImg1[n];
+				if (m == arrImg2.length-1 ) {
+						m = 0;
+					}else{
+						m++;
+					}
+					for (var i = 0; i < arrImg2.length; i++) {
+						oLis2[i].className = "";
+					}
+					oLis2[m].className = "active";
+					image2.src = arrImg2[m];
+			}
+
+			for (var i = 0; i < arrImg1.length; i++) {
+				//var oLi1 = document.createElement("li");
+				oUl1.innerHTML += "<li>"+(i+1)+"</li>"
+				//alert(document.getElementsByTagName("li").length);
+				leftBtn1.onclick = function(){
+					
+					if (n == 0 ) {
+						n = arrImg1.length-1;
+					}else{
+						n--;
+					}
+					for (var i = 0; i < arrImg1.length; i++) {
+						oLis1[i].className = "";
+					}
+					oLis1[n].className = "active";
+					image1.src = arrImg1[n];
+				}
+				rightBtn1.onclick = function(){
+					if (n == arrImg1.length-1 ) {
+						n = 0;
+					}else{
+						n++;
+					}
+					for (var i = 0; i < arrImg1.length; i++) {
+						oLis1[i].className = "";
+					}
+					oLis1[n].className = "active";
+					image1.src = arrImg1[n];
+				}
+				oLis1[n].className = "active";
+			}
+
+			for (var i = 0; i < arrImg2.length; i++) {
+				oUl2.innerHTML += "<li>"+(i+1)+"</li>"
+				//alert(document.getElementsByTagName("li").length);
+				leftBtn2.onclick = function(){
+					if (m == 0 ) {
+						m = arrImg2.length-1;
+					}else{
+						m--;
+					}
+					for (var i = 0; i < arrImg2.length; i++) {
+						oLis2[i].className = "";
+					}
+					oLis2[m].className = "active";
+					image2.src = arrImg2[m];
+				}
+				rightBtn2.onclick = function(){
+					if (m == arrImg2.length-1 ) {
+						m = 0;
+					}else{
+						m++;
+					}
+					for (var i = 0; i < arrImg2.length; i++) {
+						oLis2[i].className = "";
+					}
+					oLis2[m].className = "active";
+					image2.src = arrImg2[m];
+				}
+				
+				oLis2[m].className = "active";
+			}
+
+			
+
+		}
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+		<button id="prev">上一组</button>
+		<button id="next">下一组</button>
+		<button id="left1"></button>
+		<button id="right1"></button>
+		<img id="image1" src="img/1.jpg" alt="">
+		<ul id="list1"></ul>
+
+		<button id="left2"></button>
+		<button id="right2"></button>
+		<img id="image2" src="img/b1.jpg" alt="">
+		<ul id="list2"></ul>
+	</div>
+</body>
+</html>

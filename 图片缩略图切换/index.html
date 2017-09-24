@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		*{
+			margin: 0px;
+			padding: 0px;
+		}
+		#wrapper{
+			width: 700px;
+			position: relative;
+			margin:0 auto;
+		}
+		button{
+			width: 36px;
+			height: 36px;
+			border:none;
+			position: absolute;
+		}
+		button:hover{
+			cursor: pointer;
+		}
+		button:focus{
+			outline:0px;
+			-webkit-outline:0px;
+		}
+		#left{
+			top: 280px;
+			background: url("img/arrows.png") no-repeat 0px 0px;
+		}
+		#left:hover{
+			background: url("img/arrows.png") no-repeat -80px 0px;
+		}
+		#right{
+			background: url("img/arrows.png") no-repeat -40px 0px;
+			right: 10px;
+			top: 280px;
+		}
+		#right:hover{
+			background: url("img/arrows.png") no-repeat -120px 0px;
+		}
+		#image{
+			position: absolute;
+			left: 45px;
+		}
+		#list{
+			width: 210px;
+			list-style: none;
+			position: absolute;
+			top: 600px;
+			left: 0px;
+			right: 0px;
+			margin: auto;
+			font-size: 0;
+		}
+		#list li{
+			width: 30px;
+			height: 30px;
+			display: inline-block;
+			font-size: 16px;
+			border-radius: 15px;
+			margin-right: 10px;
+			background-color: #ccc;
+			text-align: center;
+			line-height: 30px;
+		}
+		#list li:hover{
+			cursor: pointer;
+		}
+		#list li.active{
+			background-color: #d00;
+			color: white;
+		}
+		#list li span{
+			position: relative;
+		}
+		.sml{
+			position: relative;
+			left: -25px;
+			top: 5px;
+			width: 80px;
+			height: 80px;
+			border-radius: 10px;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			var leftBtn = document.getElementById('left');
+			var rightBtn = document.getElementById('right');
+			var image = document.getElementById('image');
+			var oUl = document.getElementById('list');
+			var oLis = oUl.getElementsByTagName("li");
+			var oImg = oUl.getElementsByTagName("img");
+			var arrImg = ["img/1.jpg","img/2.jpg","img/3.jpg","img/4.jpg","img/5.jpg"];
+			var num = 0;
+
+			for (var i = 0; i < arrImg.length; i++) {
+				var oLi = document.createElement("li");
+				oUl.innerHTML += "<li>"+(i+1)+'<span><img class="sml" src="'+arrImg[i]+'" alt=""></span></li>';
+
+				//alert(document.getElementsByTagName("li").length);
+				leftBtn.onclick = function(){
+					if (num == 0 ) {
+						num = arrImg.length-1;
+					}else{
+						num--;
+					}
+
+					for (var i = 0; i < arrImg.length; i++) {
+						oLis[i].className = "";
+					}
+					oLis[num].className="active";
+
+					image.src = arrImg[num];
+				}
+				rightBtn.onclick = function(){
+					if (num == arrImg.length-1 ) {
+						num = 0;
+					}else{
+						num++;
+					}
+
+					for (var i = 0; i < arrImg.length; i++) {
+						oLis[i].className = "";
+					}
+					oLis[num].className="active";
+
+					image.src = arrImg[num];
+				}
+			}
+
+			for (var i = 0; i < oLis.length; i++) {
+				oLis[i].index = i;
+				oImg[i].style.display = "none";
+				//oImg[num].style.display = "block";
+				oLis[i].onmouseover = function(){
+					image.src = arrImg[this.index];
+					for (var i = 0; i < arrImg.length; i++) {
+						oLis[i].className = "";
+						oImg[i].style.display = "none";
+					}
+					oLis[this.index].className="active";
+					oImg[this.index].style.display = "block";
+				}
+				oLis[i].onmouseout = function(){
+					oImg[this.index].style.display = "none";
+				}
+			}
+			oLis[num].className="active";
+			//oImg[num].style.display = "inline";
+
+		}
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+		<button id="left"></button>
+		<button id="right"></button>
+		<img id="image" src="img/1.jpg" alt="">
+		<ul id="list">
+			
+		</ul>
+	</div>
+</body>
+</html>

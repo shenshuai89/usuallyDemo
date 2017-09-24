@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<style>
+	body{
+		margin:0;
+		padding: 0;
+	}
+	#content{
+		width: 1280px;
+		height: 800px;
+		margin: 0 auto;
+		position: relative;
+		background:url("img/background.jpg") no-repeat center center;
+	}
+	#content div{
+		width: 380px;
+		height: 90px;
+		position: absolute;
+		left: 640px;
+		top: 460px;
+		border-radius: 6px;
+		background-color: #f1f1f1;
+		opacity: 0.9;
+		filter: opacity(90);
+		-moz-opacity:0.9;
+
+		transition: 1s ease-in;
+		transform-origin:15px 45px;
+		/* transform:rotate(30deg); */ 
+	}
+	#content div span{
+		position: absolute;
+		right: 20px;
+		bottom: 10px;
+		font-size: 18px;
+		color: #fff;
+	}
+	#content div:nth-of-type(1){
+		background-color: #417191;
+	}
+	#content div:nth-of-type(2){
+		background-color: #ce8298;
+	}
+	#content div:nth-of-type(3){
+		background-color: #f78992;
+	}
+	#content div:nth-of-type(4){
+		background-color: #fbc0a5;
+	}
+	#content div:nth-of-type(5){
+		background-color: #f8988f;
+	}
+	#content div:nth-of-type(6){
+		background-color: #f16273;
+	}
+	#content div:nth-of-type(7){
+		background-color: #9c9fcd;
+	}
+	#content div:nth-of-type(8){
+		background-color: #bae2d3;
+	}
+	#content div:nth-of-type(9){
+		background-color: #43bab8;
+	}
+	#content div:nth-of-type(10){
+		background-color: #678d95;
+	}
+</style>
+<script>
+window.onload = function(){
+	var oDiv = document.getElementById('content');
+	var oDivs = oDiv.getElementsByTagName('div');
+	var onOff = true;
+	setTimeout(open,300);
+
+	oDivs[oDivs.length-1].onclick = function(){
+		if (onOff == true) {
+			close();	
+		}else{
+			open();
+		}
+		onOff = !onOff;	
+	}
+	
+/*	//这样把if写在外面，window.onload执行一遍就结束了，必须用onclick事件来调用
+	//事件写在判断外面，函数写在事件里面
+	if (onOff == true) {
+		alert(onOff +" if out");
+		oDivs[oDivs.length-1].onclick = function(){
+			close();
+			alert(onOff+" if in");
+			onOff = !onOff; //修改的变量只在这个事件内有效
+		}
+	}else{
+		alert(onOff);
+		for (var i = 0; i < oDivs.length; i++) {
+			oDivs[i].onclick = function(){
+				alert(onOff);
+			}
+		}
+	}*/
+	
+	for (var i = 0; i < oDivs.length-1; i++) {
+		oDivs[i].index = i;
+		oDivs[i].onclick = function(){
+			for (var j = 0; j < oDivs.length; j++) {
+				if (j<this.index) {
+					oDivs[j].style.transform = "rotate("+(345-(17*j) + this.index*17 - 75 +10)+"deg)";
+				}else if (j>this.index){
+					oDivs[j].style.transform = "rotate("+(345-(17*j) + this.index*17 - 75 -10)+"deg)";
+				}
+			}
+			oDivs[this.index].style.transform = "rotate("+(345-(17*this.index) + this.index*17 - 75)+"deg)";
+		}
+	}
+
+	function open(){
+		for (var i = 0; i < oDivs.length; i++) {
+			oDivs[i].style.transform = "rotate("+(345-(17*i))+"deg)";
+		}
+	}
+	function close(){
+		for (var i = 0; i < oDivs.length; i++) {
+			oDivs[i].style.transform = "rotate(0deg)";
+		}
+	}
+	
+}
+</script>
+<body>
+	<div id="content">
+		<div><span>国粹艺术经典</span></div>
+		<div><span>国粹艺术经典</span></div>
+		<div><span>国粹艺术经典</span></div>
+		<div><span>国粹艺术经典</span></div>
+		<div><span>国粹艺术经典</span></div>
+		<div><span>国粹艺术经典</span></div>
+		<div><span>国粹艺术经典</span></div>
+		<div><span>国粹艺术经典</span></div>
+		<div><span>国粹艺术经典</span></div>
+		<div><span>国粹艺术经典</span></div>
+	</div>
+</body>
+</html>

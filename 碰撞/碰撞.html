@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>物体拖拽</title>
+	<style>
+		#move{
+			width: 100px;
+			height: 100px;
+			background-color: #e00;
+			position: absolute;
+			z-index: 2;
+		}
+		#img1{
+			position: absolute;
+			margin: auto;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+		}
+	</style>
+	<script>
+	window.onload = function () {
+		var oImg = document.getElementById('img1')
+		var oMove = document.getElementById('move')
+
+		drag(oMove)
+
+		// 拖拽函数封装
+		function drag(obj){
+			obj.onmousedown = function(ev){
+				var ev = ev || event;
+				var disX = ev.clientX - this.offsetLeft
+				var disY = ev.clientY - this.offsetTop
+
+				//非标准IE
+				if (obj.setCapture) {
+					obj.setCapture()
+				}
+				document.onmousemove = function(ev){
+					var ev = ev || event;
+					var legalH = ev.clientX - disX
+					var legalV = ev.clientY - disY
+
+					// 碰撞开始
+					var L1 = legalH
+					var R1 = legalH + obj.offsetWidth
+					var T1 = legalV
+					var B1 = legalV + obj.offsetHeight
+
+					var L2 = oImg.offsetLeft
+					var R2 = L2 + oImg.offsetWidth
+					var T2 = oImg.offsetTop
+					var B2 = T2 + oImg.offsetHeight
+
+					if(R1<L2 || L1>R2 || B1<T2 || T1>B2){
+						oImg.src = 'sam1.jpg'
+					}else{
+						oImg.src = 'sam0.jpg'
+					}
+					// 碰撞结束
+
+					// 验证可以活动范围
+					if(legalH < 20){
+						legalH = 0
+					}else if(legalH > document.documentElement.clientWidth - obj.offsetWidth-20){
+						legalH = document.documentElement.clientWidth - obj.offsetWidth
+					}
+					if(legalV < 20){
+						legalV = 0
+					}else if(legalV > document.documentElement.clientHeight - obj.offsetHeight-20){
+						legalV = document.documentElement.clientHeight - obj.offsetHeight
+					}
+
+					obj.style.left = legalH +'px'
+					obj.style.top = legalV +'px'
+					
+				}
+
+				document.onmouseup = function(){
+					document.onmousemove= document.onmouseup =null
+					if (obj.releaseCapture) {
+						obj.releaseCapture()
+					}
+				}
+				return false
+			}
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="move"></div>
+	<img src="sam1.jpg" id="img1">
+</body>
+</html>

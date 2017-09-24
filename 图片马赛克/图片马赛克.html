@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script>
+	window.onload = function () {
+		var oCas = document.getElementById('cas');
+		//设置绘图环境
+		var oGc = oCas.getContext('2d');
+
+		var setImg = new Image();
+
+		setImg.src = 'msk.jpg';
+		var timer=0;
+		setImg.onload = function(){
+			//draw(setImg,15);
+			//setInterval(draw,2000,setImg);
+			setInterval(draw,2000,setImg,10);
+		}		
+
+		function draw(obj,num){
+			oCas.width = obj.width*2;
+			oCas.height = obj.height;
+			oGc.drawImage(obj,0,0);
+
+			var imgData = oGc.getImageData(0,0,obj.width,obj.height);
+
+			var w = imgData.width;
+			var h = imgData.height;
+
+			var newImage = oGc.createImageData(obj.width,obj.height);
+
+			var stepW = w/num;
+			var stepH = h/num; 
+
+			for (var i = 0; i < stepH; i++) {
+				for (var j = 0; j < stepW; j++) {
+					
+					var color = getXY(imgData,j*num+Math.floor(Math.random()*num),i*num+Math.floor(Math.random()*num));
+
+					for (var m = 0; m < num; m++) {
+						for (var n = 0; n < num; n++) {
+							setXY(newImage,j*num+n,i*num+m,color);
+						}
+					}
+
+				}
+			}
+			oGc.putImageData(newImage,obj.width,0);
+		}
+
+		function getXY(obj,x,y){
+			var w = obj.width;
+			var h = obj.height;
+			var d = obj.data;
+
+			var color = [];
+
+			color[0] = d[4*(y*w+x)];
+			color[1] = d[4*(y*w+x)+1];
+			color[2] = d[4*(y*w+x)+2];
+			color[3] = d[4*(y*w+x)+3];
+
+			return color;
+		}
+
+		function setXY(obj,x,y,color){
+			var w = obj.width;
+			var h = obj.height;
+			var d = obj.data;
+
+			d[4*(y*w+x)] = color[0];
+			d[4*(y*w+x)+1] = color[1];
+			d[4*(y*w+x)+2] = color[2];
+			d[4*(y*w+x)+3] = color[3];
+
+		}
+	}
+	</script>
+</head>
+<body>
+	<canvas id="cas" width="400" height="400"></canvas>
+</body>
+</html>

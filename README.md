@@ -1,29 +1,27 @@
-# vue小示例集合
+# 常用的JavaScript小案例
 
-## [moduleVueRouter](https://github.com/shenshuai89/vue2/tree/master/moduleVueRouter)
-> 模块化路由，有时候，在路由非常多的情况下，如何对路由进行模块化拆分？
+## [格式化日期](https://github.com/shenshuai89/usuallyDemo/tree/master/格式化日期)
+> 转换时间格式为字符串xxxx-xx-xx
 
-## [pos](https://github.com/shenshuai89/vue2/tree/master/pos)
-> 点单添加删除，axio数据
+## [碰撞](https://github.com/shenshuai89/usuallyDemo/tree/master/碰撞)
+> 碰到图片是变成彩色
 
-## [vue-deskweb](https://github.com/shenshuai89/vue2/tree/master/vue-deskweb)
-> 使用vue开发桌面web
+## [扇子折叠](https://github.com/shenshuai89/usuallyDemo/tree/master/扇子折叠)
+> 点击使得扇子页处于中间的地方
 
-## [vue-router](https://github.com/shenshuai89/vue2/tree/master/vue-router)
-> router路由的使用
+## [双区域图片切换](https://github.com/shenshuai89/usuallyDemo/tree/master/双区域图片切换)
+> 可以通过按钮控制两个区域的图片切换
 
-## [vue-shoppingCar](https://github.com/shenshuai89/vue2/tree/master/vue-shoppingCar)
-> 慕课网上购物车实例
+## [图片马赛克](https://github.com/shenshuai89/usuallyDemo/tree/master/图片马赛克)
+> 需要放在服务器
 
-## [vueBootstrap](https://github.com/shenshuai89/vue2/tree/master/vueBootstrap)
-> 使用bootstrap插件进行页面布局
+## [图片缩略图切换](https://github.com/shenshuai89/usuallyDemo/tree/master/图片缩略图切换)
+> 切换图下方显示缩略图
 
-## [vueWithWebpack](https://github.com/shenshuai89/vue2/tree/master/vueWithWebpack)
-> 使用webpack配置vue开发环境
+## [图片圆点切换](https://github.com/shenshuai89/usuallyDemo/tree/master/图片圆点切换)
+> 点击下方圆点可以切换图
 
-## [vuex](https://github.com/shenshuai89/vue2/tree/master/vuex)
-> vuex同一个对象的状态管理对象
+## [拖拽物体](https://github.com/shenshuai89/usuallyDemo/tree/master/拖拽物体)
+> 拖动物体
 
-## [vue组件间通信](https://github.com/shenshuai89/vue2/tree/master/vue%E7%BB%84%E4%BB%B6%E9%97%B4%E9%80%9A%E4%BF%A1)
-> vue父子组件通信，兄弟组件间通信
 

@@ -1,5 +1,8 @@
 # 常用的JavaScript小案例
 
+## [格式化日期](https://github.com/shenshuai89/usuallyDemo/tree/master/city)
+> 3级城市选择列表
+
 ## [格式化日期](https://github.com/shenshuai89/usuallyDemo/tree/master/格式化日期)
 > 转换时间格式为字符串xxxx-xx-xx
 
